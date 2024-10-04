@@ -7,9 +7,17 @@
 APlagueGameMode::APlagueGameMode()
 {
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/ThirdPerson/Blueprints/BP_ThirdPersonCharacter"));
+	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/Characters/BP_ThirdPersonCharacter"));
 	if (PlayerPawnBPClass.Class != NULL)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
+    // Set custom player controller class to our Blueprinted controller
+    static ConstructorHelpers::FClassFinder<APlayerController> PlayerControllerBPClass(TEXT("/Game/Input/Controllers/PC_Game_Controller"));
+    if (PlayerControllerBPClass.Class != nullptr)
+    {
+        PlayerControllerClass = PlayerControllerBPClass.Class;
+    }
 }
+

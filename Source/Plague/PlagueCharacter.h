@@ -44,8 +44,16 @@ class APlagueCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+	/** Run Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* RunAction;
+
 public:
 	APlagueCharacter();
+
+	// Functions to handle running
+	void StartRunning();
+	void StopRunning();
 	
 
 protected:

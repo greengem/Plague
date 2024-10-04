@@ -34,7 +34,7 @@ APlagueCharacter::APlagueCharacter()
 	// instead of recompiling to adjust them
 	GetCharacterMovement()->JumpZVelocity = 700.f;
 	GetCharacterMovement()->AirControl = 0.35f;
-	GetCharacterMovement()->MaxWalkSpeed = 500.f;
+	GetCharacterMovement()->MaxWalkSpeed = 200.f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.0f;
@@ -86,6 +86,10 @@ void APlagueCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlagueCharacter::Look);
+
+		// Running
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Triggered, this, &APlagueCharacter::StartRunning);
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this, &APlagueCharacter::StopRunning);
 	}
 	else
 	{
@@ -127,4 +131,14 @@ void APlagueCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void APlagueCharacter::StartRunning()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 500.f;
+}
+
+void APlagueCharacter::StopRunning()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 200.f;
 }
