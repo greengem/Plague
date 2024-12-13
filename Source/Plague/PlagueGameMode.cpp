@@ -8,6 +8,10 @@ APlagueGameMode::APlagueGameMode()
 {
 	// set default pawn class to our Blueprinted character
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/Characters/BP_ThirdPersonCharacter"));
+	
+	//MetaHuman
+	//static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/MetaHumans/Myles/BP_Myles"));
+	
 	if (PlayerPawnBPClass.Class != NULL)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
@@ -20,4 +24,3 @@ APlagueGameMode::APlagueGameMode()
         PlayerControllerClass = PlayerControllerBPClass.Class;
     }
 }
-
